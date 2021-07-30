@@ -45,9 +45,21 @@ function M.save()
   vim.o.sessionoptions = tmp
 end
 
-function M.load(opt)
-  opt = opt or {}
-  local sfile = opt.last and M.get_last() or M.get_current()
+function M.load(sfile)
+  if sfile and vim.fn.filereadable(sfile) ~= 0 then
+    vim.cmd("source " .. e(sfile))
+  end
+end
+
+function M.load_current()
+  local sfile = M.get_current()
+  if sfile and vim.fn.filereadable(sfile) ~= 0 then
+    vim.cmd("source " .. e(sfile))
+  end
+end
+
+function M.load_last()
+  local sfile = M.get_last()
   if sfile and vim.fn.filereadable(sfile) ~= 0 then
     vim.cmd("source " .. e(sfile))
   end
