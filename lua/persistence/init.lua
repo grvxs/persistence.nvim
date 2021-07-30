@@ -26,7 +26,7 @@ function M.start()
   vim.cmd([[
     augroup Persistence
       autocmd!
-      autocmd VimLeavePre * lua require("persistence").save()
+      autocmd BufWritePost * lua require("persistence").save()
     augroup end
   ]])
 end
