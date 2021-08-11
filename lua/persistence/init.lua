@@ -23,12 +23,12 @@ function M.setup(opts)
 end
 
 function M.start()
-  vim.cmd([[
+  vim.cmd(string.format([[
     augroup Persistence
       autocmd!
-      autocmd BufWritePost * lua require("persistence").save()
+      autocmd %s * lua require("persistence").save()
     augroup end
-  ]])
+  ]], Config.options.cmd))
 end
 
 function M.stop()
